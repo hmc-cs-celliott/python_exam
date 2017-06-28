@@ -1,0 +1,29 @@
+<title>Trip</title>
+	<style type="text/css">
+	#left_content{
+		display: inline-block;
+		height: 700px;
+		width: 400px;
+		vertical-align: top;
+	}
+	</style>
+</head>
+<body>
+	<div>
+	<a href='/travels'>Home</a>
+	<a href='/logout'>Logout</a>
+	</div>
+	<div id='left_content'>
+		<h1>{{trip.destination}}</h1>
+		<p> Planned by: {{trip.created_by.name}}</p>
+		<p> Description: {{trip.description}}</p>
+		<p> Start date: {{trip.start_date}}</p>
+		<p> End date: {{trip.end_date}}</p>
+		<br><br><br>
+		<h2>Other Users joining the trip:</h2>
+	    {% for person in trip.buddies.all %} 
+		    <p>{{person.name}}</p>
+	    {% endfor %}
+	</div>
+</body>
+</html>

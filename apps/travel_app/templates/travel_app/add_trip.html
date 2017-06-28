@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Add a trip</title>
+	<style type="text/css">
+	form{
+		padding: 10px;
+	}
+	form input, select{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		display: block;
+	}
+	</style>
+</head>
+<body>
+	<a href='/travels'>Home</a>
+	<a href='/logout'>Logout</a>
+	<h1>Add a trip</h1>
+	<div id='main_content'>
+		{% if messages %}
+	    {% for message in messages %}
+	        <p>{{ message }}<p>
+	    {% endfor %}
+		{% endif %}
+		<form action='/add_attempt' method='POST'>
+			{% csrf_token %}
+			Destination: <input type='text' name='destination'>
+		    Description: <input type='text' name='description'>
+		    Start Date: <input type="date" name="start_date">
+		    End Date: <input type="date" name="end_date">
+			<input type='submit' value='Add Trip' name='submit'>
+		</form>
+	</div>
+</body>
+</html>

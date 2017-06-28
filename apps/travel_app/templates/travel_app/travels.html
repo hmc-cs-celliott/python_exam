@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>Travels</title>
+	<style type="text/css">
+	table{
+		border: 1px solid #ff9966;
+		width: 70%;
+	}
+	</style>
+</head>
+<body>
+	<div>
+	<h1>Hello, {{request.session.name}}!</h1>
+	<a href='/add_trip'>Add Travel Plan</a>
+	<a href='/logout'>logout</a>
+	</div>
+	<div id='top_content'>
+		<h1>Your trip schedules</h1>
+		<table>
+  		<tr>
+	    	<th>Destination</th>
+	    	<th>Start Date</th> 
+	    	<th>End Date</th>
+	    	<th>Description</th>
+ 		</tr>
+	    {% for trip in my_trips %} 
+		    <tr>
+		    	<td><a href='/trip/{{trip.id}}'>{{trip.destination}}</a></td>
+	    		<td>{{trip.start_date}}</td> 
+	    		<td>{{trip.end_date}}</td>
+	    		<td>{{trip.description}}</td>
+		    </tr>
+	    {% endfor %}
+		</table>
+	</div>
+	<div id='bottom_content'>
+		<h1>Other user's trip schedules</h1>
+		<table>
+  		<tr>
+  			<th>Trip Organizer</th>
+	    	<th>Destination</th>
+	    	<th>Start Date</th> 
+	    	<th>End Date</th>
+	    	<th>Do you want to join?</th>
+ 		</tr>
+	    {% for trip in other_trips %} 
+		    <tr>
+		    	<td>{{trip.created_by.name}}</td>
+		    	<td><a href='/trip/{{trip.id}}'>{{trip.destination}}</a></td>
+	    		<td>{{trip.start_date}}</td> 
+	    		<td>{{trip.end_date}}</td>
+	    		<td><a href='/join_trip/{{trip.id}}'>Join</a></td>
+		    </tr>
+	    {% endfor %}
+		</table>
+	</div>
+</body>
+</html>
